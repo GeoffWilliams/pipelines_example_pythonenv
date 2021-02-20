@@ -8,7 +8,7 @@ env:
 	pip install -r requirements.txt
 
 
-publish: build
+publish: dist
 	. env/bin/activate; \
 	python setup.py bdist_wheel upload -r local
 
