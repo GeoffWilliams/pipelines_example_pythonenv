@@ -1,12 +1,35 @@
 Metadata-Version: 2.1
 Name: pipelines-example-pythonenv
-Version: 0.0.0+6
+Version: 0.0.0
 Summary: example pip packaging
 Home-page: https://github.com/declarativesystems/pipelines_example_pythonenv
 Author: Geoff Williams
 Author-email: geoff@declarativesystems.com
 License: UNKNOWN
 Description: # JFrog Pipelines PythonEnv example
+        
+        ## Building Locally
+        
+        ```shell
+        make
+        ```
+        
+        The package can be published with:
+        
+        ```shell
+        make publish
+        ```
+        
+        Which implies `make`.
+        
+        ## Building in JFrog Pipelines
+        
+        ```shell
+        git push origin master
+        ```
+        
+        Will trigger a build, using the same scripts that run locally.
+        
 Platform: UNKNOWN
 Classifier: Development Status :: 2 - Pre-Alpha
 Classifier: Programming Language :: Python :: 3
