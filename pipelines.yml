@@ -4,7 +4,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: githubAccountGeoffwilliams
-      path: declarativesystems//pipelines_example_pythonenv
+      path: declarativesystems/pipelines_example_pythonenv
   - name: pythonEnvExample
     type: declarativesystems/PythonEnv
     configuration:
