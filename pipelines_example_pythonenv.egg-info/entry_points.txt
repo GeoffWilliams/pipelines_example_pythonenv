@@ -1,0 +1,3 @@
+[console_scripts]
+pipelines_example_pythonenv = pipelines_example_pythonenv:main
+

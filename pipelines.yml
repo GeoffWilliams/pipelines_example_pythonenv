@@ -1,0 +1,39 @@
+apiVersion: v1.1
+resources:
+  - name: gitPipelinesExamplePythonEnv
+    type: GitRepo
+    configuration:
+      gitProvider: githubAccountGeoffwilliams
+      path: declarativesystems//pipelines_example_pythonenv
+  - name: pythonEnvExample
+    type: declarativesystems/PythonEnv
+    configuration:
+      sourceArtifactory: artifactory # for resolving and publishing packages
+      repositoryName: pypi
+
+pipelines:
+  - name: pipelinesExamplePythonEnv
+    configuration:
+      runtime:
+        type: image
+        image:
+          custom:
+            name: "declarativesystems.jfrog.io/docker-local/pipelines"
+            tag: "0.7.0-27"
+            registry: artifactory
+            sourceRepository: docker-local
+
+    steps:
+      - name: pythonBuildAndDeploy
+        type: Bash
+        configuration:
+          integrations:
+            - name: artifactory
+          inputResources:
+            - name: pythonEnvExample
+            - name: gitPipelinesExamplePythonEnv
+        execution:
+          onExecute:
+            - cd $res_gitPipelinesExamplePythonEnv_resourcePath
+            - python setup.py sdist bdist_wheel
+            - python -m twine upload dist/*
